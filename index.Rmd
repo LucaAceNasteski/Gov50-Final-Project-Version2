@@ -1,6 +1,6 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
+author: "Luca Ace-Nasteski, Harvard College"
 description: "My final project"
 output:
   distill::distill_article:
@@ -9,9 +9,12 @@ output:
 
 
 
-## Project thoughts
+## Introduction 
 
-I am interested in exploring data related to...
+How do Americans parents' marital status growing up affect their thermometer feeling towards teacher's? Does gender and the community type in which they lived growing up impact how they feel about teacher's too? I hypothesize from the collected data that individuals who grew up with a lesser presence of marriage will have warm and positive feelings towards teachers, as they may be more connected to certain teachers as a mentor or role model due to a lesser presence and complicated dynamic at home. Further, I hypothesize those who experienced the most extreme case of their parents marital status growing up in there being a widow (either male or female parent) will have the warmest and most positive feelings towards teacher's due to missing a significant mentor in their life. Overall, I hypothesize that the thermometer feeling score will have more answers skewed towards warm and positive than cold and negative due to the fact that teacher's are a valuable asset in society today in teaching and molding kids at school.
+
+My data set was retrieved from the Pew Research Center's "American Trends Panel Wave 28" which conducted surveys over the course of August 8th-21st in 2017. The topics that the survey covered were views on gender, news consumption habits, social media attitudes and political party affiliation. There were 4,971 respondents within the data set. 
+
 
 
 
@@ -25,9 +28,17 @@ library(modelsummary)
 
 wave28 <- read_sav("wave28.sav")
 
-wave28
+wave28 
 
 ```
+
+```{r}
+wave28 |>
+  group_by(QKEY) |>
+  summarize(count = n()) |>
+  summarize(total_participants = sum(count))
+```
+
 
 ```{r}
 
