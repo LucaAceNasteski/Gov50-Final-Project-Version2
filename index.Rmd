@@ -12,3 +12,144 @@ output:
 ## Project thoughts
 
 I am interested in exploring data related to...
+
+
+
+```{r}
+
+library(tidyverse)
+library(ggplot2)
+library(haven)
+library(dplyr)
+library(modelsummary)
+
+wave28 <- read_sav("wave28.sav")
+
+wave28
+
+```
+
+```{r}
+
+wave28 <- 
+  wave28 |>
+  mutate(
+    gender = if_else(F_SEX_FINAL == 1, "Male", "Female"))
+
+wave28 <- 
+  wave28 |>
+  mutate(
+    thermo_teachers = case_when(
+    is.na(THERMO_THERMBG_W28) ~ "No Response",
+    THERMO_THERMBG_W28 == 0 ~ "Very Cold and Negative",
+    THERMO_THERMBG_W28 > 0 & THERMO_THERMBG_W28 < 25 ~ "Cold and Negative",
+    THERMO_THERMBG_W28 >= 25 & THERMO_THERMBG_W28 < 50 ~ "Somewhat Cold and Negative",
+    THERMO_THERMBG_W28 == 50 ~ "Neither Positive or Negative",
+    THERMO_THERMBG_W28 > 50 & THERMO_THERMBG_W28 < 75 ~ "Somewhat Warm and Positive",
+    THERMO_THERMBG_W28 >= 75 & THERMO_THERMBG_W28 < 100 ~ "Warm and Positive",
+    THERMO_THERMBG_W28 == 100 ~ "Very Warm and Positive",
+    THERMO_THERMBG_W28 > 100 ~ "No Response")) 
+
+wave28 <- 
+  wave28 |>
+  mutate(
+    parent_marital_status = if_else(
+    FAM2_W28 == 1, "Married",
+    if_else(FAM2_W28 == 2, "Divorced",
+            if_else(FAM2_W28 == 3, "Seperated",
+                    if_else(FAM2_W28 == 4, "Widowed",
+                            if_else(FAM2_W28 == 5, "Never Married", "No Response"))))))
+
+wave28 <- 
+  wave28 |>
+  mutate(
+    personal_financial_situation = case_when(
+    is.na(SATLIFEC_W28) ~ "No Response",
+    SATLIFEC_W28 == 1 ~ "Very Satisfied",
+    SATLIFEC_W28 == 2 ~ "Somewhat Satisfied",
+    SATLIFEC_W28 == 3 ~ "Somewhat Dissatisfied",
+    SATLIFEC_W28 == 4 ~ "Very Dissatisfied"))
+
+wave28 <- 
+  wave28 |>
+  mutate(
+    community_living_type = case_when(
+    is.na(COMTYPE1F1_W28) ~ "No Response",
+    COMTYPE1F1_W28 == 1 ~ "A City",
+    COMTYPE1F1_W28 == 2 ~ "A Suburb",
+    COMTYPE1F1_W28 == 3 ~ "A Small Town",
+    COMTYPE1F1_W28 == 4 ~ "A Rural Area")) 
+
+```
+
+```{r}
+
+count_gender <- 
+  wave28 |>
+  group_by(gender) |>
+  summarize(count = n())
+
+count_gender
+
+count_parent_marital_status <- 
+  wave28 |>
+  group_by(parent_marital_status) |>
+  summarize(count = n())
+
+count_parent_marital_status
+
+count_thermo_teachers <-
+  wave28 |>
+  group_by(thermo_teachers) |>
+  summarize(count = n())
+
+count_thermo_teachers
+
+count_personal_financial_situation <-
+  wave28 |>
+  group_by(personal_financial_situation) |>
+  summarize(count = n())
+
+count_personal_financial_situation
+
+count_community_living_type <-
+  wave28 |>
+  group_by(community_living_type) |>
+  summarize(count = n())
+
+count_community_living_type
+
+```
+
+```{r}
+
+mean_thermo_teachers <- 
+  wave28 |>
+  filter(THERMO_THERMBG_W28 >= 0 & THERMO_THERMBG_W28 <= 100) |>
+  summarize(mean_thermo_teachers = mean(THERMO_THERMBG_W28, na.rm = TRUE))
+
+mean_thermo_teachers
+```
+
+```{r}
+
+table1 <- 
+  wave28 |>
+  filter(parent_marital_status != "No Response",
+         community_living_type != "No Response") |>
+  group_by(parent_marital_status, gender, community_living_type) |>
+  summarize(mean_thermo_teachers = mean(THERMO_THERMBB_W28, na.rm = TRUE)) 
+
+table1 
+
+ggplot(table1, aes(x = parent_marital_status, y = mean_thermo_teachers, fill = community_living_type)) +
+  geom_col(stat = "identity", position = "dodge", alpha = 0.8) +
+  facet_grid(rows = vars(gender)) +
+  labs(x = "Parent Marital Status Growing Up", y = "Mean Thermo towards Teachers (0-100)", title = "Comparison of Mean Thermo towards Teachers by Parent's Marital Status Growing Up")
+
+
+```
+
+
+
+
