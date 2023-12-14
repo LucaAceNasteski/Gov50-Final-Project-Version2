@@ -183,7 +183,7 @@ knitr::kable(table1, col.names = c("Parent Marital Status", "Gender", "Community
 
 ```
 
-The knitted table above breaks down the dependent variables in relation to the independent variable. It shows all the possible combinations that will be visualized in the column graph below including Parent Marital Status, Gender, Community Living Type in relation to the Mean Thermometer Feelings Towards Teachers. In the data set there were a few outliers which hindered the accuracy of some certain variables-these are the ones that have a mean thermometer score greater than 100.
+The knitted table above breaks down the dependent variables in relation to the independent variable. It shows all the possible combinations that will be visualized in the column graph below including Parent Marital Status, Gender, Community Living Type in relation to the Mean Thermometer Feelings Towards Teachers. In the data set there were a few outliers which hindered the accuracy of some certain variables-these are the ones that have a mean thermometer score greater than 100. This is very dissapointing considering it creates a little inaccuracy in the results that we want to analyse.
 
 ```{r}
 
@@ -194,6 +194,7 @@ ggplot(table1, aes(x = parent_marital_status, y = mean_thermo_teachers, fill = c
 
 ```
 
+From the plotted column graph above we see the relationship between gender (male, female), parent marital status (divorced, married, never married, separated and widowed) and community living type (city, rural area, small town and suburb) on feelings towards teachers. From the graph we can see that those in 
 
 ```{r}
 
@@ -204,7 +205,16 @@ regression1
 summary(regression1)
 ```
 
+```{r}
 
+modelsummary::modelsummary(regression1,
+                           statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),
+                           gof_map = c("nobs", "r.squared", "adj.r.squared"))
+
+```
+
+This regression analysis is exploring the relationship between Mean Thermometer Feelings Towards Teachers and Parent Marital Status. The primary coefficient of interest is the effect that Parent Marital Status is going to have on Mean Thermometer Feelings Towards Teachers. In this analysis, the intercept 
 
 ```{r}
 
@@ -215,14 +225,6 @@ regression2
 summary(regression2)
 ```
 
-```{r}
-
-modelsummary::modelsummary(regression1,
-                           statistic = c("s.e. = {std.error}",
-                                         "p = {p.value}"),
-                           gof_map = c("nobs", "r.squared", "adj.r.squared"))
-
-```
 
 ```{r}
 
@@ -240,4 +242,20 @@ modelsummary::modelsummary(regression2,
 
 
 
+
+
+
+...
+
+
+The final report will include the following sections: (1) an introduction where you introduce the research question and hypothesis and briefly describe why it is interesting; (2) a data section that briefly describes the data source, describes how the key dependent and independent variables are measured (e.g., a survey, statistical model, or expert coding), and also produces a plot that summarizes the dependent variable; (3) a results section that contains a scatterplot, barplot, or boxplot of the main relationship of interest and output for the main regression of interest; and (4) a brief (one paragraph) concluding section that summarizes your results, assesses the extent to which you find support for your hypothesis, describes limitations of your analysis and threats to inference, and states how your analysis could be improved (e.g., improved data that would be useful to collect).
+
+For the data section, you should note if your research design is cross-sectional (most projects will be of this type) or one of the other designs we discussed (randomized experiment, before-and-after, differences-in-differences). For the results section, you should interpret (in plain English) the main coefficient of interest in your regression. You should also comment on the statistical significance of the estimated coefficient and whether or not you believe the coefficient to represent a causal effect.
+
+Here is a rubric for the the core components of the final project:
+
+Introduction: describe the research question and main hypothesis; describe why it is important. (1-2 paragraphs) (2pts)
+Data section: 2-3 paragraphs + plot visualizing main outcome of interest. (3pts)
+Results section: plot of main analysis + regression output + 2-3 paragraphs of description and interpretation of the plots and regression (including interpreting the main coefficient of interest and describing if it is statistically significant and if we should interpret it causally). This section could be longer if you choose to include additional analyses. (8pts)
+Conclusion section: 1 paragraph (i) summarizing results and assessing the extent to which you find support for your hypothesis; (ii) describing limitations of the analysis and threats to inference (missing data, confounding, etc), and stating how you could improve your analysis if you had more time/money. (2pts)
 

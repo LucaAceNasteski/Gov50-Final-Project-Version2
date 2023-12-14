@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","wave28.sav"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","wave28.sav"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1473,6 +1473,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="index_files/header-attrs-2.24/header-attrs.js"></script>
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1634,7 +1636,6 @@ Total Participants In Survey
 <p>If I observe a higher mean thermometer feeling score &gt; 50 (representing warm and positive towards very warm and very positive) or the majority of mean scores being proportionally higher for Widowed, Separated, Divorced and Never Married parents’ marital status compared to ‘Married’ then it would support my original hypothesis. Overall, mean thermometer scores being higher than 50 would complement my hypothesis in teachers being overall well respected by the general US population (in this case them being warm and positive). Observed patterns that would disprove my hypothesis would be generally low thermometer scores towards teachers, especially being &lt; 50. Similarly, there may be a chance that despite individuals parent’s in the US being married while growing up, they may still favor and have strong feelings towards teachers as they had a great science teacher or experience in school and like I said before many people have strong preferences of teachers (and mainly school) outside of the variable of their parents marital status, gender and community type.</p>
 <p>My data set was retrieved from the Pew Research Center’s “American Trends Panel Wave 28” which conducted surveys (the key dependent and independent variables are being measured by a survey) over the course of August 8th-21st in 2017. The topics that the survey covered were views on gender, news consumption habits, social media attitudes and political party affiliation. For this project I used research concerning family, community type, gender and thermometer feelings towards a number of groups in the US (in my case towards teachers). Approximately, 4,971 individuals participated in the survey from the Pew Research Center in August of 2017. In particular for my project, the exact survey questions were:</p>
 <p>FAM2_W28 - “What was the marital status of your parents during most of the time you were growing up?”, COMTYPE1F1 - “How would you describe the community where you currently live?”, THERMO_THERMBG_W28 - “We’d like to get your feelings towards a number of groups in the US (teachers in this case) on a”feeling thermometer.” A rating of zero degrees means you feel as cold and negative as possible. A rating of 100 degrees means you feel as warm and positive as possible. You would rate the group at 50 degrees if you don’t feel particularly positive or negative towards the group”, F_SEX_FINAL - “What describes your gender?”</p>
-<p>Plot that summarizes the dependent variable:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>count_gender</span> <span class='op'>&lt;-</span> </span>
@@ -1901,6 +1902,7 @@ NA
 </tbody>
 </table>
 </div>
+<p>Plot that visualizes main outcome of interest:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>filt_wave28</span> <span class='op'>&lt;-</span> </span>
@@ -1922,6 +1924,7 @@ NA
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
+<p>The first visualisation of the bar graph above shows that overall there was a sway towards warm and positive feelings towards teachers. Warm and Positive, Somewhat Warm and Positive as well as Very Warm and Positive had a much greater count compared to the cold and negative scores. Following this was a reasonable count of those who provided Neither Positive or Negative. The Cold and Negative responses were very low as shown in the plots distribution.</p>
 <h2 id="results-section">Results Section</h2>
 <p>..</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2542,6 +2545,7 @@ A Suburb
 </tbody>
 </table>
 </div>
+<p>The knitted table above breaks down the dependent variables in relation to the independent variable. It shows all the possible combinations that will be visualized in the column graph below including Parent Marital Status, Gender, Community Living Type in relation to the Mean Thermometer Feelings Towards Teachers. In the data set there were a few outliers which hindered the accuracy of some certain variables-these are the ones that have a mean thermometer score greater than 100. This is very dissapointing considering it creates a little inaccuracy in the results that we want to analyse.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>table1</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>parent_marital_status</span>, y <span class='op'>=</span> <span class='va'>mean_thermo_teachers</span>, fill <span class='op'>=</span> <span class='va'>community_living_type</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
@@ -2610,9 +2614,9 @@ F-statistic: 1.371 on 5 and 2400 DF,  p-value: 0.232</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>regression1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>THERMO_THERMBG_W28</span> <span class='op'>~</span> <span class='va'>parent_marital_status</span> <span class='op'>+</span> <span class='va'>gender</span>, data <span class='op'>=</span> <span class='va'>wave28</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>regression2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>THERMO_THERMBG_W28</span> <span class='op'>~</span> <span class='va'>parent_marital_status</span> <span class='op'>+</span> <span class='va'>gender</span>, data <span class='op'>=</span> <span class='va'>wave28</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>regression1</span></span></code></pre>
+<span><span class='va'>regression2</span></span></code></pre>
 </div>
 <pre><code>
 Call:
@@ -2635,7 +2639,7 @@ parent_marital_statusNever Married
                         genderMale  
                             -5.163  </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>regression1</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>regression2</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
 Call:
@@ -2670,6 +2674,382 @@ Residual standard error: 75.99 on 2399 degrees of freedom
   (2565 observations deleted due to missingness)
 Multiple R-squared:  0.003994,  Adjusted R-squared:  0.001503 
 F-statistic: 1.603 on 6 and 2399 DF,  p-value: 0.1421</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>regression1</span>,</span>
+<span>                           statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+82.714
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 4.311
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parent_marital_statusMarried
+</td>
+<td style="text-align:center;">
+1.035
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 4.653
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.824
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parent_marital_statusNever Married
+</td>
+<td style="text-align:center;">
+5.875
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 9.099
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.519
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parent_marital_statusNo Response
+</td>
+<td style="text-align:center;">
+3.953
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 31.333
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.900
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parent_marital_statusSeperated
+</td>
+<td style="text-align:center;">
+−4.488
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 10.573
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.671
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parent_marital_statusWidowed
+</td>
+<td style="text-align:center;">
+26.559
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 11.120
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 0.017
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+2406
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.001
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>regression2</span>,</span>
+<span>                           statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+85.055
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 4.534
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parent_marital_statusMarried
+</td>
+<td style="text-align:center;">
+1.399
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 4.657
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.764
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parent_marital_statusNever Married
+</td>
+<td style="text-align:center;">
+5.542
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 9.098
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.542
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parent_marital_statusNo Response
+</td>
+<td style="text-align:center;">
+2.473
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 31.334
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.937
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parent_marital_statusSeperated
+</td>
+<td style="text-align:center;">
+−4.247
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 10.570
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.688
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parent_marital_statusWidowed
+</td>
+<td style="text-align:center;">
+26.377
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 11.117
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.018
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+genderMale
+</td>
+<td style="text-align:center;">
+−5.163
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 3.109
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 0.097
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+2406
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.002
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <h2 id="conclusion-section">Conclusion Section</h2>
 <p>..</p>
