@@ -1,7 +1,7 @@
 ---
-title: "Gov 50 Final Project"
+title: "How Does the Marital Status of One's Parents Affect Their Feelings Towards Teachers in America"
 author: "Luca Ace-Nasteski, Harvard College"
-description: "My final project"
+description: "Gov 50 Final Project, Fall Semester 2023"
 output:
   distill::distill_article:
     self_contained: false
@@ -17,35 +17,9 @@ library(modelsummary)
 
 wave28 <- read_sav("wave28.sav")
 
-wave28 
+wave28
 
 ```
-
-```{r}
-wave28 |>
-  group_by(QKEY) |>
-  summarize(count = n()) |>
-  summarize(total_participants = sum(count))
-```
-
-## Introduction Section
-
-How do Americans parents' marital status growing up affect their thermometer feeling towards teachers? Does gender and the community type in which they lived growing up impact how they feel about teacher's too? I hypothesize from the collected data that individuals who grew up with a lesser presence of marriage will have warm and positive feelings towards teachers, as they may be more connected to certain teachers as a mentor or role model due to a lesser presence and complicated dynamic at home. Further, I hypothesize those who experienced the most extreme case of their parents marital status growing up in there being a widow (either male or female parent) will have the warmest and most positive feelings towards teachers due to missing a significant mentor in their life. Overall, I hypothesize that the thermometer feeling score will have more answers skewed towards warm and positive than cold and negative due to the fact that teacher's are a valuable asset in society today in teaching and molding kids at school. I believe, those in more isolated areas with less of a presence of marriage in their household will have greater varied thermometer feelings wether for better or worse towards teachers.
-
-My explanatory variable (independent variable) in this data set is “Parent Marital Status Growing Up.” Otherwise represented by ‘FAM2_W28’ measured by the subcategories of ‘Married = 1’, ‘Divorced = 2’, ‘Separated = 3’, ‘Widowed = 4’ and ‘Never Married = 5’. The complementing and adjacent variables are “Gender” represented by ‘F_SEX_FINAL’ and measured by the subcategories of ‘Male = 1’ and ‘Female = 0’ as well as the variable “Community Type” represented by ‘COMTYPE1F1’ and measured by ‘A city = 1’, ‘A suburb = 2’, ‘A small town = 3’ and ‘A Rural Area = 4’. 
-
-With this variable, I will seek to find my outcome variable, which is the thermometer feelings towards teachers in the US, measured on a scale of 0-100, where very cold and negative is 0, towards very warm and positive which is 100. Also, 50 degrees means their feelings are neither positive nor negative. The outcome variable is represented with ‘THERMO_THERMBG_W28’. A score of ‘0’ represents “Very Cold and Negative”, a score of ‘> 0 and < 25’ represents “Cold and Negative”, a score of ‘>= 25 and < 50’ represents “Somewhat Cold and Negative’, a score of ‘50’ represents “Neither Positive or Negative”, a score of  ‘> 50 and < 75’ represents “Somewhat Warm and Positive”, a score of ‘>= 75 and < 100’ represents “Warm and Positive and a score of ‘100’ represents “Very Warm and Very Positive.”
-
-If I observe a higher mean thermometer feeling score > 50 (representing warm and positive towards very warm and very positive) or the majority of mean scores being proportionally higher for Widowed, Separated, Divorced and Never Married parents’ marital status compared to ‘Married’ then it would support my original hypothesis. Overall, mean thermometer scores being higher than 50 would complement my hypothesis in teachers being overall well respected by the general US population (in this case them being warm and positive). Observed patterns that would disprove my hypothesis would be generally low thermometer scores towards teachers, especially being < 50. Similarly, there may be a chance that despite individuals parent's in the US being married while growing up, they may still favor and have strong feelings towards teachers as they had a great science teacher or experience in school and like I said before many people have strong preferences of teachers (and mainly school) outside of the variable of their parents marital status, gender and community type. 
-
-## Data Section
-
-My data set was retrieved from the Pew Research Center's "American Trends Panel Wave 28" which conducted surveys (the key dependent and independent variables are being measured by survey) over the course of August 8th-21st in 2017. The topics that the survey covered were views on gender, news consumption habits, social media attitudes and political party affiliation. For this project I used research concerning family, community type, gender and thermometer feelings towards a number of groups in the US (in my case towards teachers). Approximately, 4,971 individuals participated in the survey from the Pew Research Center in August of 2017. In particular for my project, the exact survey questions were: 
-
-FAM2_W28 - "What was the marital status of your parents during most of the time you were growing up?", COMTYPE1F1 - "How would you describe the community where you currently live?", THERMO_THERMBG_W28 - "We'd like to get your feelings towards a number of groups in the US (teachers in this case) on a "feeling thermometer." A rating of zero degrees means you feel as cold and negative as possible. A rating of 100 degrees means you feel as warm and positive as possible. You would rate the group at 50 degrees if you don't feel particularly positive or negative towards the group", F_SEX_FINAL - "What describes your gender?"
-
-Plot that summarizes the dependent variable: 
-
 
 ```{r}
 
@@ -102,42 +76,61 @@ wave28 <-
 
 ```{r}
 
+wave28 |>
+  group_by(QKEY) |>
+  summarize(count = n()) |>
+  summarize(total_participants = sum(count)) |>
+  knitr::kable(col.names = c("Total Participants In Survey"))
+
+```
+
+## Introduction and Data Section ** maybe hypothesis for gender too?
+
+How do Americans parents' marital status growing up affect their thermometer feeling towards teachers? Does gender and the community type in which they lived growing up impact how they feel about teacher's too? I hypothesize from the collected data that individuals who grew up with a lesser presence of marriage will have warm and positive feelings towards teachers, as they may be more connected to certain teachers as a mentor or role model due to a lesser presence and complicated dynamic at home. Further, I hypothesize those who experienced the most extreme case of their parents marital status growing up in there being a widow (either male or female parent) will have the warmest and most positive feelings towards teachers due to missing a significant mentor in their life. Overall, I hypothesize that the thermometer feeling score will have more answers skewed towards warm and positive than cold and negative due to the fact that teacher's are a valuable asset in society today in teaching and molding kids at school. I believe, those in more isolated areas with less of a presence of marriage in their household will have greater varied thermometer feelings whether for better or worse towards teachers.
+
+My explanatory variable (independent variable) in this data set is “Parent Marital Status Growing Up.” Otherwise represented by ‘FAM2_W28’ measured by the subcategories of ‘Married = 1’, ‘Divorced = 2’, ‘Separated = 3’, ‘Widowed = 4’ and ‘Never Married = 5’. The complementing and adjacent variables are “Gender” represented by ‘F_SEX_FINAL’ and measured by the subcategories of ‘Male = 1’ and ‘Female = 0’ as well as the variable “Community Type” represented by ‘COMTYPE1F1’ and measured by ‘A city = 1’, ‘A suburb = 2’, ‘A small town = 3’ and ‘A Rural Area = 4’. 
+
+With this variable, I will seek to find my outcome variable, which is the thermometer feelings towards teachers in the US, measured on a scale of 0-100, where very cold and negative is 0, towards very warm and positive which is 100. Also, 50 degrees means their feelings are neither positive nor negative. The outcome variable is represented with ‘THERMO_THERMBG_W28’. A score of ‘0’ represents “Very Cold and Negative”, a score of ‘> 0 and < 25’ represents “Cold and Negative”, a score of ‘>= 25 and < 50’ represents “Somewhat Cold and Negative’, a score of ‘50’ represents “Neither Positive or Negative”, a score of  ‘> 50 and < 75’ represents “Somewhat Warm and Positive”, a score of ‘>= 75 and < 100’ represents “Warm and Positive and a score of ‘100’ represents “Very Warm and Very Positive.”
+
+If I observe a higher mean thermometer feeling score > 50 (representing warm and positive towards very warm and very positive) or the majority of mean scores being proportionally higher for Widowed, Separated, Divorced and Never Married parents’ marital status compared to ‘Married’ then it would support my original hypothesis. Overall, mean thermometer scores being higher than 50 would complement my hypothesis in teachers being overall well respected by the general US population (in this case them being warm and positive). Observed patterns that would disprove my hypothesis would be generally low thermometer scores towards teachers, especially being < 50. Similarly, there may be a chance that despite individuals parent's in the US being married while growing up, they may still favor and have strong feelings towards teachers as they had a great science teacher or experience in school and like I said before many people have strong preferences of teachers (and mainly school) outside of the variable of their parents marital status, gender and community type. 
+
+My data set was retrieved from the Pew Research Center's "American Trends Panel Wave 28" which conducted surveys (the key dependent and independent variables are being measured by a survey) over the course of August 8th-21st in 2017. The topics that the survey covered were views on gender, news consumption habits, social media attitudes and political party affiliation. For this project I used research concerning family, community type, gender and thermometer feelings towards a number of groups in the US (in my case towards teachers). Approximately, 4,971 individuals participated in the survey from the Pew Research Center in August of 2017. In particular for my project, the exact survey questions were: 
+
+FAM2_W28 - "What was the marital status of your parents during most of the time you were growing up?", COMTYPE1F1 - "How would you describe the community where you currently live?", THERMO_THERMBG_W28 - "We'd like to get your feelings towards a number of groups in the US (teachers in this case) on a "feeling thermometer." A rating of zero degrees means you feel as cold and negative as possible. A rating of 100 degrees means you feel as warm and positive as possible. You would rate the group at 50 degrees if you don't feel particularly positive or negative towards the group", F_SEX_FINAL - "What describes your gender?"
+
+```{r}
+
 count_gender <- 
   wave28 |>
   group_by(gender) |>
   summarize(count = n())
 
-count_gender
+knitr::kable(count_gender, col.names = c("Gender", "Count"))
 
 count_parent_marital_status <- 
   wave28 |>
   group_by(parent_marital_status) |>
   summarize(count = n())
 
-count_parent_marital_status
+knitr::kable(count_parent_marital_status, col.names = c("Parent Marital Status", "Count"))
 
 count_thermo_teachers <-
   wave28 |>
   group_by(thermo_teachers) |>
   summarize(count = n())
 
-count_thermo_teachers
-
-count_personal_financial_situation <-
-  wave28 |>
-  group_by(personal_financial_situation) |>
-  summarize(count = n())
-
-count_personal_financial_situation
+knitr::kable(count_thermo_teachers, col.names = c("Thermometer Feelings Towards Teachers", "Count"))
 
 count_community_living_type <-
   wave28 |>
   group_by(community_living_type) |>
   summarize(count = n())
 
-count_community_living_type
+knitr::kable(count_community_living_type, col.names = c("Community Living Type", "Count"))
 
 ```
+
+Plot that visualizes main outcome of interest: 
 
 ```{r}
 
@@ -156,9 +149,15 @@ filt_wave28 |>
     title = "Count of Mean Thermometer Feelings Towards Teachers",
     subtitle = "",
     caption = "Source: Pew Research Center (American Trends Panel Wave 28)") + 
-  theme(axis.text = element_text(size = 4.9))
+  theme(axis.text = element_text(size = 4.9)) 
 
 ```
+
+The first visualisation of the bar graph above shows that overall there was a sway towards warm and positive feelings towards teachers. Warm and Positive, Somewhat Warm and Positive as well as Very Warm and Positive had a much greater count compared to the cold and negative scores. Following this was a reasonable count of those who provided Neither Positive or Negative. The Cold and Negative responses were very low as shown in the plots distribution. 
+
+## Results Section
+
+..
 
 
 ```{r}
@@ -168,7 +167,7 @@ mean_thermo_teachers <-
   filter(THERMO_THERMBG_W28 >= 0 & THERMO_THERMBG_W28 <= 100) |>
   summarize(mean_thermo_teachers = mean(THERMO_THERMBG_W28, na.rm = TRUE))
 
-mean_thermo_teachers
+knitr::kable(mean_thermo_teachers, col.names = c("Mean Thermometer Feeling Overall Towards Teachers"))
 ```
 
 ```{r}
@@ -180,15 +179,64 @@ table1 <-
   group_by(parent_marital_status, gender, community_living_type) |>
   summarize(mean_thermo_teachers = mean(THERMO_THERMBB_W28, na.rm = TRUE)) 
 
-table1 
+knitr::kable(table1, col.names = c("Parent Marital Status", "Gender", "Community Living Type", "Mean Thermometer Feelings Towards Teachers"))
+
+```
+
+The knitted table above breaks down the dependent variables in relation to the independent variable. It shows all the possible combinations that will be visualized in the column graph below including Parent Marital Status, Gender, Community Living Type in relation to the Mean Thermometer Feelings Towards Teachers. In the data set there were a few outliers which hindered the accuracy of some certain variables-these are the ones that have a mean thermometer score greater than 100.
+
+```{r}
 
 ggplot(table1, aes(x = parent_marital_status, y = mean_thermo_teachers, fill = community_living_type)) +
   geom_col(stat = "identity", position = "dodge", alpha = 0.8) +
   facet_grid(rows = vars(gender)) +
-  labs(x = "Parent Marital Status Growing Up", y = "Mean Thermo towards Teachers (0-100)", title = "Comparison of Mean Thermo towards Teachers by Parent's Marital Status Growing Up")
-
+  labs(x = "Parent Marital Status Growing Up", y = "Mean Thermometer Feelings Towards Teachers (0-100)", title = "Comparison of Mean Thermometer feelings Towards Teachers by Parent's Marital Status Growing Up")
 
 ```
+
+
+```{r}
+
+regression1 <- lm(THERMO_THERMBG_W28 ~ parent_marital_status, data = wave28)
+
+regression1
+
+summary(regression1)
+```
+
+
+
+```{r}
+
+regression2 <- lm(THERMO_THERMBG_W28 ~ parent_marital_status + gender, data = wave28)
+
+regression2
+
+summary(regression2)
+```
+
+```{r}
+
+modelsummary::modelsummary(regression1,
+                           statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),
+                           gof_map = c("nobs", "r.squared", "adj.r.squared"))
+
+```
+
+```{r}
+
+modelsummary::modelsummary(regression2,
+                           statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),
+                           gof_map = c("nobs", "r.squared", "adj.r.squared"))
+
+```
+
+
+## Conclusion Section 
+
+..
 
 
 
